@@ -40,7 +40,7 @@ for item in items:
 	price = row.find_all('td')[-1].string
 	subprice = price.split('/')
 	if len(subprice) == 3:
-		prices = {'student': subprice[0], 'employees': subprice[1], 'other': subprice[2]}
+		prices = {'student': subprice[0], 'employee': subprice[1], 'other': subprice[2]}
 	else:
 		prices = {'other': price}
 	canteen.addMeal(datetime.date(date.year, date.month, date.day), "Essen", title, notes=notes, prices=prices)
