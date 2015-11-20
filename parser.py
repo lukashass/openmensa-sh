@@ -31,11 +31,12 @@ for item in items:
 	title = item.strong.string
 	numbers = item.small.string
 	notes = []
-	for number in numbers.split(','):
-		number = int(number.strip())
-		if number > len(legend):
-			continue
-		notes.append(legend[number])
+	if numbers:
+		for number in numbers.split(','):
+			number = int(number.strip())
+			if number > len(legend):
+				continue
+			notes.append(legend[number])
 	row = item.parent.parent
 	price = row.find_all('td')[-1].string
 	subprice = price.split('/')
