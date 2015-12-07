@@ -44,6 +44,6 @@ for item in items:
 		prices = {'student': subprice[0], 'employee': subprice[1], 'other': subprice[2]}
 	else:
 		prices = {'other': price}
-	canteen.addMeal(datetime.date(date.year, date.month, date.day), "Essen", title, notes=notes, prices=prices)
+	canteen.addMeal(datetime.date(date.year, date.month, date.day), "Mittagessen", title, notes=notes, prices=prices)
 
 print(canteen.toXMLFeed())
