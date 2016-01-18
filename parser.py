@@ -1,9 +1,54 @@
 #!/usr/bin/env python3
+import sys
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as parse
 from pyopenmensa.feed import LazyBuilder
 import datetime
 
+
+if len(sys.argv) < 2 or "--help" in sys.argv[1:] or "-h" in sys.argv[1:]:
+	print("Usage: {} <town> [mensa]".format(sys.argv[0]))
+	sys.exit()
+
+mensas = {
+	"flensburg": {
+		"default": 431,
+		"munketoft": "4.321"
+	},
+	"heide": {
+		"default": 461
+	},
+	"kiel": {
+		"mensa-i": 411,
+		"mensa-ii": 421,
+		"kesselhause": 425,
+		"schwentine": 426,
+		"gaarden": 903
+	},
+	"luebeck": {
+		"default": 441,
+		"musikhochschule": 443
+	},
+	"rendsburg": {
+		"default": 901
+	}
+}
+
+if sys.argv[1] not in mensas:
+	print('Town "{}" not found.'.format(sys.argv[1]))
+	sys.exit()
+town = sys.argv[1]
+
+mensa = "default"
+if len(sys.argv) > 2:
+	mensa = sys.argv[2]
+
+if mensa not in mensas[town]:
+	print('Town "{}" does not have a mensa "{}".'.format(town, mensa))
+	sys.exit()
+
+
+mensa_id = mensas[sys.argv[1]][mensa]
 
 legend = {}
 legendcontent = urlopen('http://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html').read()
@@ -17,8 +62,7 @@ for entry in rawlegend.split(','):
 
 date = datetime.datetime.now() 
 
-m = '441'
-url = 'http://www.studentenwerk.sh/de/menuAction/print.html?m={}&t=d&d={}'.format(m, date.strftime('%Y-%m-%d'))
+url = 'http://www.studentenwerk.sh/de/menuAction/print.html?m={}&t=d&d={}'.format(mensa_id, date.strftime('%Y-%m-%d'))
 
 content = urlopen(url).read()
 document = parse(content, 'html.parser')
