@@ -73,6 +73,8 @@ canteen = LazyBuilder()
 
 for item in items:
 	title = item.strong.string
+	if not title:
+		continue
 	numbers = item.small.string
 	notes = []
 	if numbers:
@@ -83,11 +85,13 @@ for item in items:
 			notes.append(legend[number])
 	row = item.parent.parent
 	price = row.find_all('td')[-1].string
-	subprice = price.split('/')
-	if len(subprice) == 3:
-		prices = {'student': subprice[0], 'employee': subprice[1], 'other': subprice[2]}
-	else:
-		prices = {'other': price}
+	prices = {}
+	if price:
+		subprice = price.split('/')
+		if len(subprice) == 3:
+			prices = {'student': subprice[0], 'employee': subprice[1], 'other': subprice[2]}
+		else:
+			prices = {'other': price}
 	canteen.addMeal(datetime.date(date.year, date.month, date.day), "Mittagessen", title, notes=notes, prices=prices)
 
 print(canteen.toXMLFeed())
