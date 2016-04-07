@@ -7,7 +7,7 @@ import datetime
 
 
 if len(sys.argv) < 2 or "--help" in sys.argv[1:] or "-h" in sys.argv[1:]:
-	print("Usage: {} <town> [mensa]".format(sys.argv[0]))
+	print("Usage: {} <town> [mensa] [days]".format(sys.argv[0]))
 	sys.exit()
 
 mensas = {
@@ -60,38 +60,44 @@ for entry in rawlegend.split(','):
 	legend[int(words[0])] = str.join(' ', words[1:])
 
 
-date = datetime.datetime.now() 
-
-url = 'http://www.studentenwerk.sh/de/menuAction/print.html?m={}&t=d&d={}'.format(mensa_id, date.strftime('%Y-%m-%d'))
-
-content = urlopen(url).read()
-document = parse(content, 'html.parser')
-
-items = document.find_all('a', {"class": "item"})
-
 canteen = LazyBuilder()
 
-for item in items:
-	title = item.strong.string
-	if not title:
-		continue
-	numbers = item.small.string
-	notes = []
-	if numbers:
-		for number in numbers.split(','):
-			number = int(number.strip())
-			if number > len(legend):
-				continue
-			notes.append(legend[number])
-	row = item.parent.parent
-	price = row.find_all('td')[-1].string
-	prices = {}
-	if price:
-		subprice = price.split('/')
-		if len(subprice) == 3:
-			prices = {'student': subprice[0], 'employee': subprice[1], 'other': subprice[2]}
-		else:
-			prices = {'other': price}
-	canteen.addMeal(datetime.date(date.year, date.month, date.day), "Mittagessen", title, notes=notes, prices=prices)
+date = datetime.datetime.now()
+days = 1
+if len(sys.argv) > 3:
+	days = int(sys.argv[3])
+
+for i in range(0, days):
+	url = 'http://www.studentenwerk.sh/de/menuAction/print.html?m={}&t=d&d={}'.format(mensa_id, date.strftime('%Y-%m-%d'))
+
+	content = urlopen(url).read()
+	document = parse(content, 'html.parser')
+
+	items = document.find_all('a', {"class": "item"})
+
+	for item in items:
+		title = item.strong.string
+		if not title:
+			continue
+		numbers = item.small.string
+		notes = []
+		if numbers:
+			for number in numbers.split(','):
+				number = int(number.strip())
+				if number > len(legend):
+					continue
+				notes.append(legend[number])
+		row = item.parent.parent
+		price = row.find_all('td')[-1].string
+		prices = {}
+		if price:
+			subprice = price.split('/')
+			if len(subprice) == 3:
+				prices = {'student': subprice[0], 'employee': subprice[1], 'other': subprice[2]}
+			else:
+				prices = {'other': price}
+		canteen.addMeal(datetime.date(date.year, date.month, date.day), "Mittagessen", title, notes=notes, prices=prices)
+
+	date = date + datetime.timedelta(1)
 
 print(canteen.toXMLFeed())
