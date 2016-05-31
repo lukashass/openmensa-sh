@@ -57,7 +57,7 @@ rawlegend = legenddocument.find(text="Kennzeichnung").parent.parent.div.find('di
 
 for entry in rawlegend.split(','):
 	words = entry.strip().split(' ')
-	legend[int(words[0])] = str.join(' ', words[1:])
+	legend[int(words[0])] = str.join(' ', words[1:]).strip()
 
 
 canteen = LazyBuilder()
