@@ -56,7 +56,7 @@ rawlegend = legenddocument.find(text="Kennzeichnung").parent.parent.div.find('di
 
 for entry in rawlegend.split(','):
 	words = entry.strip().split(' ')
-	legend[int(words[0])] = str.join(' ', words[1:]).strip()
+	legend[words[0]] = str.join(' ', words[1:]).strip()
 
 
 canteen = LazyBuilder()
@@ -82,10 +82,11 @@ for i in range(0, days):
 		notes = []
 		if numbers:
 			for number in numbers.split(','):
-				number = int(number.strip())
-				if number > len(legend):
-					continue
-				notes.append(legend[number])
+				number = number.strip()
+				if number in legend:
+					notes.append(legend[number])
+				else:
+					notes.append(number)
 		row = item.parent.parent
 		price = row.find_all('td')[-1].string
 		prices = {}
