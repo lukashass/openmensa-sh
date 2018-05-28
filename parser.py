@@ -12,8 +12,7 @@ if len(sys.argv) < 2 or "--help" in sys.argv[1:] or "-h" in sys.argv[1:]:
 
 mensas = {
 	"flensburg": {
-		"default": 431,
-		"munketoft": "4.321"
+		"default": 431
 	},
 	"heide": {
 		"default": 461
