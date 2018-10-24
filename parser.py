@@ -50,7 +50,7 @@ if mensa not in mensas[town]:
 mensa_id = mensas[sys.argv[1]][mensa]
 
 legend = {}
-legendcontent = urlopen('http://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html').read()
+legendcontent = urlopen('https://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html').read()
 legenddocument = parse(legendcontent, 'html.parser')
 rawlegend = legenddocument.find(text="Kennzeichnung").parent.parent.div.find('div', {'class': 'text'}).contents[0].strip()
 
@@ -67,7 +67,7 @@ if len(sys.argv) > 3:
 	days = int(sys.argv[3])
 
 for i in range(0, days):
-	url = 'http://www.studentenwerk.sh/de/menuAction/print.html?m={}&t=d&d={}'.format(mensa_id, date.strftime('%Y-%m-%d'))
+	url = 'https://www.studentenwerk.sh/de/menuAction/print.html?m={}&t=d&d={}'.format(mensa_id, date.strftime('%Y-%m-%d'))
 
 	content = urlopen(url).read()
 	document = parse(content, 'html.parser')
