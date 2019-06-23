@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 from urllib.request import urlopen
-from bs4 import BeautifulSoup as parse
+from bs4 import BeautifulSoup as parse, NavigableString, Tag
 from pyopenmensa.feed import LazyBuilder
 import datetime
 
@@ -52,12 +52,14 @@ mensa_id = mensas[sys.argv[1]][mensa]
 legend = {}
 legendcontent = urlopen('https://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html').read()
 legenddocument = parse(legendcontent, 'html.parser')
-rawlegend = legenddocument.find(text="Kennzeichnung").parent.parent.div.find('div', {'class': 'text'}).contents[0].strip()
+legends = legenddocument.find(text='Allergene und Zusatzstoffe').parent.parent.find_all('table', {'class': 'ingredientsLegend'})
 
-for entry in rawlegend.split(','):
-	words = entry.strip().split(' ')
-	legend[words[0]] = str.join(' ', words[1:]).strip()
-
+for current_legend in legends:
+	ingredientKeys = current_legend.find_all('td', {'class': 'ingredientKey'})
+	for ingredientKey in ingredientKeys:
+		finalKey = ingredientKey.text.strip()
+		finalValue = ingredientKey.findNext('td', {'class': 'ingredientName'}).text.strip()
+		legend[finalKey] = finalValue
 
 canteen = LazyBuilder()
 
@@ -75,18 +77,27 @@ for i in range(0, days):
 	items = document.find_all('a', {"class": "item"})
 
 	for item in items:
-		title = item.strong.string
-		if not title:
-			continue
-		numbers = item.small.string
-		notes = []
-		if numbers:
-			for number in numbers.split(','):
-				number = number.strip()
-				if number in legend:
-					notes.append(legend[number])
+		title = ""
+
+		def extract(part, title, notes):
+			if isinstance(part, NavigableString):
+				title += str(part)
+			elif isinstance(part, Tag):
+				if part.name == "small":
+					note_string = part.string.strip(" ()")
+					notes.update(map(lambda x: x.strip(), note_string.split(",")))
 				else:
-					notes.append(number)
+					for child in part.children:
+						title, notes = extract(child, title, notes)
+			return title, notes
+
+		title, notes = extract(item.strong, "", set())
+		title = title.strip()
+		if len(title) < 1:
+			continue
+
+		notes = map(lambda x: legend[x] if x in legend else x, notes)
+
 		row = item.parent.parent
 		price = row.find_all('td')[-1].string
 		prices = {}
