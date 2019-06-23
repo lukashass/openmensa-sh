@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as parse, NavigableString, Tag
 from pyopenmensa.feed import LazyBuilder
@@ -86,13 +87,16 @@ for i in range(0, days):
 				if part.name == "small":
 					note_string = part.string.strip(" ()")
 					notes.update(map(lambda x: x.strip(), note_string.split(",")))
+				elif part.name == "br" and not part.text:
+					if title[-1] != " ":
+						title += " "
 				else:
 					for child in part.children:
 						title, notes = extract(child, title, notes)
 			return title, notes
 
 		title, notes = extract(item.strong, "", set())
-		title = title.strip()
+		title = re.sub("\s+", " ", title).strip()
 		if len(title) < 1:
 			continue
 
