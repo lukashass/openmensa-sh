@@ -89,10 +89,10 @@ for i in range(0, days):
 				if part.name == "small":
 					note_string = part.string.strip(" ()")
 					notes.update(map(lambda x: x.strip(), note_string.split(",")))
-				elif part.name == "br" and not part.text:
-					if title[-1] != " ":
-						title += " "
 				else:
+					if part.name == "br":
+						if title[-1] != " ":
+							title += " "
 					for child in part.children:
 						title, notes = extract(child, title, notes)
 			return title, notes
