@@ -20,7 +20,7 @@ services:
       - HOST
     volumes:
       - ./:/app
-    entrypoint: /app/cron.sh
+    entrypoint: /app/entrypoint.sh
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
 
