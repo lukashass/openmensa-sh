@@ -8,6 +8,8 @@
 0 0 * * * out=$(/app/parser.py luebeck default 60) && echo "$out" > /app/http-root/feeds/luebeck-mensa.xml
 30 * * * * out=$(/app/parser.py luebeck cafeteria 1) && echo "$out" > /app/http-root/feeds/luebeck-cafeteria-today.xml
 0 0 * * * out=$(/app/parser.py luebeck cafeteria 60) && echo "$out" > /app/http-root/feeds/luebeck-cafeteria.xml
+30 * * * * out=$(/app/parser.py luebeck musikhochschule 1) && echo "$out" > /app/http-root/feeds/luebeck-musikhochschule-today.xml
+0 0 * * * out=$(/app/parser.py luebeck musikhochschule 60) && echo "$out" > /app/http-root/feeds/luebeck-musikhochschule.xml
 30 * * * * out=$(/app/parser.py heide default 1) && echo "$out" > /app/http-root/feeds/heide-mensa-today.xml
 0 0 * * * out=$(/app/parser.py heide default 60) && echo "$out" > /app/http-root/feeds/heide-mensa.xml
 30 * * * * out=$(/app/parser.py osterroenfeld default 1) && echo "$out" > /app/http-root/feeds/osterroenfeld-mensa-today.xml

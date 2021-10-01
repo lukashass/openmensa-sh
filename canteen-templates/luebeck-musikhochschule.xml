@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openmensa version="2.1" xmlns="http://openmensa.org/open-mensa-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openmensa.org/open-mensa-v2 http://openmensa.org/open-mensa-v2.xsd">
+  <canteen>
+    <name>Cafeteria Musikhochschule</name>
+    <address>Große Petersgrube 17-19, 23552 Lübeck</address>
+    <city>Lübeck</city>
+    <phone>+49 451 31012970</phone>
+    <email>mensa.hl@studentenwerk.sh</email>
+    <location latitude="53.8649141" longitude="10.6818867" />
+    <feed name="today" priority="10">
+      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-musikhochschule-today.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/musikhochschule/speiseplan.html</source>
+    </feed>
+    <feed name="full" priority="1">
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-musikhochschule.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/musikhochschule/speiseplan.html</source>
+    </feed>
+  </canteen>
+</openmensa>
