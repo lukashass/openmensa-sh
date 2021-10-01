@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openmensa version="2.1" xmlns="http://openmensa.org/open-mensa-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openmensa.org/open-mensa-v2 http://openmensa.org/open-mensa-v2.xsd">
+  <canteen>
+    <name>Mensa Lübeck</name>
+    <address>Mönkhofer Weg 241, 23562 Lübeck</address>
+    <city>Lübeck</city>
+    <phone>+49 451 31012970</phone>
+    <email>mensa.hl@studentenwerk.sh</email>
+    <location latitude="53.8352308" longitude="10.7002899" />
+    <feed name="today" priority="10">
+      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-mensa-today.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html</source>
+    </feed>
+    <feed name="full" priority="1">
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-mensa.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html</source>
+    </feed>
+  </canteen>
+</openmensa>
