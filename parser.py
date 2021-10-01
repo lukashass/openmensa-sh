@@ -59,17 +59,17 @@ if mensa not in mensas[town]:
 
 mensa_id = mensas[sys.argv[1]][mensa]
 
-legend = {}
-legendcontent = urlopen('https://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html').read()
-legenddocument = parse(legendcontent, 'html.parser')
-legends = legenddocument.find(text='Allergene und Zusatzstoffe').parent.parent.find_all('table', {'class': 'ingredientsLegend'})
+# legend = {}
+# legendcontent = urlopen('https://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html').read()
+# legenddocument = parse(legendcontent, 'html.parser')
+# legends = legenddocument.find(text='Allergene und Zusatzstoffe').parent.parent.find_all('table', {'class': 'ingredientsLegend'})
 
-for current_legend in legends:
-	ingredientKeys = current_legend.find_all('td', {'class': 'ingredientKey'})
-	for ingredientKey in ingredientKeys:
-		finalKey = ingredientKey.text.strip()
-		finalValue = ingredientKey.findNext('td', {'class': 'ingredientName'}).text.strip()
-		legend[finalKey] = finalValue
+# for current_legend in legends:
+# 	ingredientKeys = current_legend.find_all('td', {'class': 'ingredientKey'})
+# 	for ingredientKey in ingredientKeys:
+# 		finalKey = ingredientKey.text.strip()
+# 		finalValue = ingredientKey.findNext('td', {'class': 'ingredientName'}).text.strip()
+# 		legend[finalKey] = finalValue
 
 canteen = LazyBuilder()
 
@@ -109,7 +109,7 @@ for i in range(0, days):
 		if len(title) < 1:
 			continue
 
-		notes = map(lambda x: legend[x] if x in legend else x, notes)
+		# notes = map(lambda x: legend[x] if x in legend else x, notes)
 
 		row = item.parent.parent
 		price = row.find_all('td')[-1].string
