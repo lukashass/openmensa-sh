@@ -25,14 +25,21 @@ mensas = {
 		"mensa-ii": 421,
 		"kesselhause": 425,
 		"schwentine": 426,
-		"gaarden": 903
+		"gaarden": 903,
+		"cafeteria-i": 413,
+		"cafeteria-ii": 423,
+		"cafeteria-fh": 427
 	},
 	"luebeck": {
 		"default": 441,
+		"cafeteria": 442,
 		"musikhochschule": 443
 	},
 	"osterroenfeld": {
 		"default": 901
+	},
+	"wedel": {
+		"default": 452
 	}
 }
 
