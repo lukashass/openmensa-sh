@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openmensa version="2.1" xmlns="http://openmensa.org/open-mensa-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openmensa.org/open-mensa-v2 http://openmensa.org/open-mensa-v2.xsd">
+  <canteen>
+    <name>Cafeteria</name>
+    <address>Mönkhofer Weg 241, 23562 Lübeck</address>
+    <city>Lübeck</city>
+    <phone>+49 451 31012970</phone>
+    <email>mensa.hl@studentenwerk.sh</email>
+    <location latitude="53.8353586" longitude="10.7001285" />
+    <times type="opening">
+      <monday open="11:00-14:00" />
+      <tuesday open="11:00-14:00" />
+      <wednesday open="11:00-14:00" />
+      <thursday open="11:00-14:00" />
+      <friday open="11:00-14:00" />
+      <saturday closed="true" />
+      <sunday closed="true" />
+    </times>
+    <feed name="today" priority="10">
+      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-cafeteria-today.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/cafeteria-in-der-mensa/speiseplan.html</source>
+    </feed>
+    <feed name="full" priority="1">
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-cafeteria.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/cafeteria-in-der-mensa/speiseplan.html</source>
+    </feed>
+  </canteen>
+</openmensa>

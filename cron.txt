@@ -1,0 +1,12 @@
+30 * * * * out=$(/app/parser.py kiel mensa-i 1) && echo "$out" > /app/http-root/feeds/kiel-mensa-i-today.xml
+0 0 * * * out=$(/app/parser.py kiel mensa-i 60) && echo "$out" > /app/http-root/feeds/kiel-mensa-i.xml
+30 * * * * out=$(/app/parser.py kiel mensa-ii 1) && echo "$out" > /app/http-root/feeds/kiel-mensa-ii-today.xml
+0 0 * * * out=$(/app/parser.py kiel mensa-ii 60) && echo "$out" > /app/http-root/feeds/kiel-mensa-ii.xml
+30 * * * * out=$(/app/parser.py kiel schwentine 1) && echo "$out" > /app/http-root/feeds/kiel-schwentine-mensa-today.xml
+0 0 * * * out=$(/app/parser.py kiel schwentine 60) && echo "$out" > /app/http-root/feeds/kiel-schwentine-mensa.xml
+30 * * * * out=$(/app/parser.py luebeck cafeteria 1) && echo "$out" > /app/http-root/feeds/luebeck-cafeteria-today.xml
+0 0 * * * out=$(/app/parser.py luebeck cafeteria 60) && echo "$out" > /app/http-root/feeds/luebeck-cafeteria.xml
+30 * * * * out=$(/app/parser.py heide default 1) && echo "$out" > /app/http-root/feeds/heide-mensa-today.xml
+0 0 * * * out=$(/app/parser.py heide default 60) && echo "$out" > /app/http-root/feeds/heide-mensa.xml
+30 * * * * out=$(/app/parser.py osterroenfeld default 1) && echo "$out" > /app/http-root/feeds/osterroenfeld-mensa-today.xml
+0 0 * * * out=$(/app/parser.py osterroenfeld default 60) && echo "$out" > /app/http-root/feeds/osterroenfeld-mensa.xml

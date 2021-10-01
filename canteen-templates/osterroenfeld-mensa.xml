@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openmensa version="2.1" xmlns="http://openmensa.org/open-mensa-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openmensa.org/open-mensa-v2 http://openmensa.org/open-mensa-v2.xsd">
+  <canteen>
+    <name>Mensa Osterrönfeld</name>
+    <address>Grüner Kamp 11, 24783 Osterrönfeld</address>
+    <city>Osterrönfeld</city>
+    <phone>+49 4331 845117</phone>
+    <feed name="today" priority="10">
+      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/osterroenfeld-mensa-today.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/osterroenfeld/mensa-osterroenfeld/speiseplan.html</source>
+    </feed>
+    <feed name="full" priority="1">
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/osterroenfeld-mensa.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/osterroenfeld/mensa-osterroenfeld/speiseplan.html</source>
+    </feed>
+  </canteen>
+</openmensa>

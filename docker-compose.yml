@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  web:
+    image: caddy:2
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web-proxy"
+      - "traefik.http.routers.files.entryPoints=websecure"
+      - "traefik.http.routers.files.rule=Host(`${HOST}`)"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./http-root:/http-root
+
+  collector:
+    build: .
+    restart: always
+    environment:
+      - HOST
+    volumes:
+      - ./:/app
+    entrypoint: /app/cron.sh
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+
+networks:
+  default:
+    external:
+      name: web-proxy

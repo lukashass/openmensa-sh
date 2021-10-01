@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openmensa version="2.1" xmlns="http://openmensa.org/open-mensa-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openmensa.org/open-mensa-v2 http://openmensa.org/open-mensa-v2.xsd">
+  <canteen>
+    <name>Mensa I</name>
+    <address>Westring 385, 24118 Kiel</address>
+    <city>Kiel</city>
+    <phone>+49 431 8816252</phone>
+    <email>mensa1@studentenwerk.sh</email>
+    <location latitude="54.3374740" longitude="10.1228998" />
+    <availability>public</availability>
+    <times type="opening">
+      <monday open="11:15-14:15" />
+      <tuesday open="11:15-14:15" />
+      <wednesday open="11:15-14:15" />
+      <thursday open="11:15-14:15" />
+      <friday open="11:15-14:15" />
+      <saturday closed="true" />
+      <sunday closed="true" />
+    </times>
+    <feed name="today" priority="10">
+      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/kiel-mensa-i-today.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/kiel/mensa-i/speiseplan.html</source>
+    </feed>
+    <feed name="full" priority="1">
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <url>https://[HOST_PLACEHOLDER]/feeds/kiel-mensa-i.xml</url>
+      <source>https://www.studentenwerk.sh/de/essen/standorte/kiel/mensa-i/speiseplan.html</source>
+    </feed>
+  </canteen>
+</openmensa>
