@@ -1,7 +1,7 @@
-30 * * * * out=$(/app/parser.py kiel mensa-i) && echo "$out" > /app/http-root/feeds/kiel-mensa-i-today.xml
-30 * * * * out=$(/app/parser.py kiel mensa-ii) && echo "$out" > /app/http-root/feeds/kiel-mensa-ii-today.xml
-30 * * * * out=$(/app/parser.py kiel schwentine) && echo "$out" > /app/http-root/feeds/kiel-schwentine-mensa-today.xml
-30 * * * * out=$(/app/parser.py luebeck mensa) && echo "$out" > /app/http-root/feeds/luebeck-mensa-today.xml
-30 * * * * out=$(/app/parser.py luebeck musikhochschule) && echo "$out" > /app/http-root/feeds/luebeck-musikhochschule-today.xml
-30 * * * * out=$(/app/parser.py heide mensa) && echo "$out" > /app/http-root/feeds/heide-mensa-today.xml
-30 * * * * out=$(/app/parser.py flensburg mensa) && echo "$out" > /app/http-root/feeds/flensburg-mensa-today.xml
+30 * * * * out=$(/app/parser.py kiel mensa-i) && echo "$out" > /app/http-root/feeds/kiel-mensa-i.xml
+30 * * * * out=$(/app/parser.py kiel mensa-ii) && echo "$out" > /app/http-root/feeds/kiel-mensa-ii.xml
+30 * * * * out=$(/app/parser.py kiel schwentine) && echo "$out" > /app/http-root/feeds/kiel-schwentine-mensa.xml
+30 * * * * out=$(/app/parser.py luebeck mensa) && echo "$out" > /app/http-root/feeds/luebeck-mensa.xml
+30 * * * * out=$(/app/parser.py luebeck musikhochschule) && echo "$out" > /app/http-root/feeds/luebeck-musikhochschule.xml
+30 * * * * out=$(/app/parser.py heide mensa) && echo "$out" > /app/http-root/feeds/heide-mensa.xml
+30 * * * * out=$(/app/parser.py flensburg mensa) && echo "$out" > /app/http-root/feeds/flensburg-mensa.xml

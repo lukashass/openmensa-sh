@@ -16,13 +16,8 @@
       <saturday closed="true" />
       <sunday closed="true" />
     </times>
-    <feed name="today" priority="10">
-      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
-      <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-cafeteria-today.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/cafeteria-in-der-mensa/speiseplan.html</source>
-    </feed>
     <feed name="full" priority="1">
-      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-cafeteria.xml</url>
       <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/cafeteria-in-der-mensa/speiseplan.html</source>
     </feed>

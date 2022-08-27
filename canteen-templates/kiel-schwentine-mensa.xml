@@ -8,13 +8,8 @@
     <email>schwentinemensa@studentenwerk.sh</email>
     <location latitude="54.3297996" longitude="10.1811393" />
     <availability>public</availability>
-    <feed name="today" priority="10">
-      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
-      <url>https://[HOST_PLACEHOLDER]/feeds/kiel-schwentine-mensa-today.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/kiel/schwentinemensa/speiseplan.html</source>
-    </feed>
     <feed name="full" priority="1">
-      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/kiel-schwentine-mensa.xml</url>
       <source>https://www.studentenwerk.sh/de/essen/standorte/kiel/schwentinemensa/speiseplan.html</source>
     </feed>

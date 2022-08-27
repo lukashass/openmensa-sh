@@ -8,13 +8,8 @@
     <email>mensa2@studentenwerk.sh</email>
     <location latitude="54.34644" longitude="10.11333" />
     <availability>public</availability>
-    <feed name="today" priority="10">
-      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
-      <url>https://[HOST_PLACEHOLDER]/feeds/kiel-mensa-ii-today.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/kiel/mensa-ii/speiseplan.html</source>
-    </feed>
     <feed name="full" priority="1">
-      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/kiel-mensa-ii.xml</url>
       <source>https://www.studentenwerk.sh/de/essen/standorte/kiel/mensa-ii/speiseplan.html</source>
     </feed>

@@ -7,13 +7,8 @@
     <phone>+49 481 8555190</phone>
     <email>mensa.hei@studentenwerk.sh</email>
     <location latitude="54.19424" longitude="9.12195" />
-    <feed name="today" priority="10">
-      <schedule dayOfMonth="*" dayOfWeek="1-5" hour="*" />
-      <url>https://[HOST_PLACEHOLDER]/feeds/heide-mensa-today.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/heide/mensa-heide/speiseplan.html</source>
-    </feed>
     <feed name="full" priority="1">
-      <schedule dayOfMonth="*" dayOfWeek="*" hour="1" />
+      <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/heide-mensa.xml</url>
       <source>https://www.studentenwerk.sh/de/essen/standorte/heide/mensa-heide/speiseplan.html</source>
     </feed>
