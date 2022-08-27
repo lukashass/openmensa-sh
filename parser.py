@@ -7,55 +7,44 @@ from pyopenmensa.feed import LazyBuilder
 import datetime
 
 
-if len(sys.argv) < 2 or "--help" in sys.argv[1:] or "-h" in sys.argv[1:]:
-	print("Usage: {} <town> [mensa] [days]".format(sys.argv[0]))
-	sys.exit()
+if len(sys.argv) < 3 or "--help" in sys.argv[1:] or "-h" in sys.argv[1:]:
+    print("Usage: {} <town> <mensa>".format(sys.argv[0]))
+    sys.exit()
 
 mensas = {
-	"flensburg": {
-		"default": 431,
-		"madrid": "4.321",
-		"b": "433",
-	},
-	"heide": {
-		"default": 461
-	},
-	"kiel": {
-		"mensa-i": 411,
-		"mensa-ii": 421,
-		"kesselhause": 425,
-		"schwentine": 426,
-		"gaarden": 903,
-		"cafeteria-i": 413,
-		"cafeteria-ii": 423,
-		"cafeteria-fh": 427
-	},
-	"luebeck": {
-		"default": 441,
-		"cafeteria": 442,
-		"musikhochschule": 443
-	},
-	"osterroenfeld": {
-		"default": 901
-	},
-	"wedel": {
-		"default": 452
-	}
+    "flensburg": {
+        "mensa": 7,
+        # "cafeteria": 14,
+    },
+    "heide": {"mensa": 11},
+    "kiel": {
+        "mensa-i": 1,
+        "mensa-ii": 2,
+        "kesselhause": 4,
+        "schwentine": 5,
+        "gaarden": 3,
+        # "cafeteria-i": 413,
+        # "cafeteria-ii": 423,
+        "cafeteria-fh": 6,
+    },
+    "luebeck": {
+        "mensa": 8,
+        # "cafeteria": 442,
+        "musikhochschule": 9,
+    },
+    "wedel": {"cafeteria": 10},
 }
 
-if sys.argv[1] not in mensas:
-	print('Town "{}" not found.'.format(sys.argv[1]))
-	sys.exit()
 town = sys.argv[1]
+mensa = sys.argv[2]
 
-mensa = "default"
-if len(sys.argv) > 2:
-	mensa = sys.argv[2]
+if town not in mensas:
+    print('Town "{}" not found.'.format(sys.argv[1]))
+    sys.exit()
 
 if mensa not in mensas[town]:
-	print('Town "{}" does not have a mensa "{}".'.format(town, mensa))
-	sys.exit()
-
+    print('Town "{}" does not have a mensa "{}".'.format(town, mensa))
+    sys.exit()
 
 mensa_id = mensas[sys.argv[1]][mensa]
 
@@ -73,55 +62,65 @@ mensa_id = mensas[sys.argv[1]][mensa]
 
 canteen = LazyBuilder()
 
-date = datetime.datetime.now()
-days = 1
-if len(sys.argv) > 3:
-	days = int(sys.argv[3])
+# parse current and next week
+for next_week in range(0, 2):
+    url = "https://studentenwerk.sh/de/mensaplandruck?mensa={}&nw={}".format(
+        mensa_id, next_week)
 
-for i in range(0, days):
-	url = 'https://www.studentenwerk.sh/de/menuAction/print.html?m={}&t=d&d={}'.format(mensa_id, date.strftime('%Y-%m-%d'))
+    content = urlopen(url).read()
+    document = parse(content, "html.parser")
 
-	content = urlopen(url).read()
-	document = parse(content, 'html.parser')
+    days = document.find_all("div", {"class": "tag_headline"})
 
-	items = document.find_all('a', {"class": "item"})
+    for day in days:
+        date = datetime.datetime.strptime(day.attrs['data-day'], '%Y-%m-%d')
 
-	for item in items:
-		title = ""
+        meals = day.find_all("div", {"class": "mensa_menu_detail"})
 
-		def extract(part, title, notes):
-			if isinstance(part, NavigableString):
-				title += str(part)
-			elif isinstance(part, Tag):
-				if part.name == "small":
-					note_string = part.string.strip(" ()")
-					notes.update(map(lambda x: x.strip(), note_string.split(",")))
-				else:
-					if part.name == "br":
-						if title[-1] != " ":
-							title += " "
-					for child in part.children:
-						title, notes = extract(child, title, notes)
-			return title, notes
+        for meal in meals:
+            title = ""
 
-		title, notes = extract(item.strong, "", set())
-		title = re.sub("\s+", " ", title).strip()
-		if len(title) < 1:
-			continue
+            def extract(part, title, notes):
+                if isinstance(part, NavigableString):
+                    title += str(part)
+                elif isinstance(part, Tag):
+                    if part.name == "small":
+                        note_string = part.string.strip(" ()")
+                        notes.update(
+                            map(lambda x: x.strip(), note_string.split(",")))
+                    else:
+                        if part.name == "br":
+                            if title[-1] != " ":
+                                title += " "
+                        for child in part.children:
+                            title, notes = extract(child, title, notes)
+                return title, notes
 
-		# notes = map(lambda x: legend[x] if x in legend else x, notes)
+            title, notes = extract(meal.find("div",{"class": "menu_name"}), "", set())
+            title = re.sub("\s+", " ", title).strip()
+            if len(title) < 1:
+                continue
 
-		row = item.parent.parent
-		price = row.find_all('td')[-1].string
-		prices = {}
-		if price:
-			subprice = price.split('/')
-			if len(subprice) == 3:
-				prices = {'student': subprice[0], 'employee': subprice[1], 'other': subprice[2]}
-			else:
-				prices = {'other': price}
-		canteen.addMeal(datetime.date(date.year, date.month, date.day), "Mittagessen", title, notes=notes, prices=prices)
+            # notes = map(lambda x: legend[x] if x in legend else x, notes)
 
-	date = date + datetime.timedelta(1)
+            price = meal.find("div", {"class": "menu_preis"}).string.strip()
+            prices = {}
+            if price:
+                subprice = price.split("/")
+                if len(subprice) == 3:
+                    prices = {
+                        "student": subprice[0],
+                        "employee": subprice[1],
+                        "other": subprice[2],
+                    }
+                else:
+                    prices = {"other": price}
+            canteen.addMeal(
+                datetime.date(date.year, date.month, date.day),
+                "Mittagessen",
+                title,
+                notes=notes,
+                prices=prices,
+            )
 
 print(canteen.toXMLFeed())

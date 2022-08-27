@@ -7,8 +7,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web-proxy"
-      - "traefik.http.routers.files.entryPoints=websecure"
-      - "traefik.http.routers.files.rule=Host(`${HOST}`)"
+      - "traefik.http.routers.openmensa.entryPoints=websecure"
+      - "traefik.http.routers.openmensa.rule=Host(`${HOST}`)"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ./http-root:/http-root
