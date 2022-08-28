@@ -78,6 +78,8 @@ for next_week in range(0, 2):
         meals = day.find_all("div", {"class": "mensa_menu_detail"})
 
         for meal in meals:
+            category = meal.find("div", {"class": "menu_art"}).contents[0].string.strip()
+
             title = ""
 
             def extract(part, title, notes):
@@ -117,7 +119,7 @@ for next_week in range(0, 2):
                     prices = {"other": price}
             canteen.addMeal(
                 datetime.date(date.year, date.month, date.day),
-                "Mittagessen",
+                category,
                 title,
                 notes=notes,
                 prices=prices,
