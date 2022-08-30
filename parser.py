@@ -48,17 +48,15 @@ if mensa not in mensas[town]:
 
 mensa_id = mensas[sys.argv[1]][mensa]
 
-# legend = {}
-# legendcontent = urlopen('https://www.studentenwerk.sh/de/essen/standorte/luebeck/mensa-luebeck/speiseplan.html').read()
-# legenddocument = parse(legendcontent, 'html.parser')
-# legends = legenddocument.find(text='Allergene und Zusatzstoffe').parent.parent.find_all('table', {'class': 'ingredientsLegend'})
+legend = {}
+legendcontent = urlopen(
+    'https://studentenwerk.sh/de/essen-uebersicht?ort=1&mensa=1').read()
+legenddocument = parse(legendcontent, 'html.parser')
+legends = legenddocument.find_all("div", {"class": "filterbutton"})
 
-# for current_legend in legends:
-# 	ingredientKeys = current_legend.find_all('td', {'class': 'ingredientKey'})
-# 	for ingredientKey in ingredientKeys:
-# 		finalKey = ingredientKey.text.strip()
-# 		finalValue = ingredientKey.findNext('td', {'class': 'ingredientName'}).text.strip()
-# 		legend[finalKey] = finalValue
+for current_legend in legends:
+    legend[current_legend['data-wert']
+           ] = current_legend.select_one('span:not(.abk)').string.strip()
 
 canteen = LazyBuilder()
 
@@ -78,32 +76,37 @@ for next_week in range(0, 2):
         meals = day.find_all("div", {"class": "mensa_menu_detail"})
 
         for meal in meals:
-            category = meal.find("div", {"class": "menu_art"}).contents[0].string.strip()
+            notes = []
+            notes.extend(meal['data-arten'].split('|'))
+            notes.extend(meal['data-allergene'].split('|'))
+            notes.extend(meal['data-zusatzstoffe'].split('|'))
+            notes = list(filter(lambda x: len(x) > 0, notes))
+            notes = list(map(lambda x: legend[x], notes))
+
+            category = meal.find(
+                "div", {"class": "menu_art"}).contents[0].string.strip()
 
             title = ""
 
-            def extract(part, title, notes):
+            def extract(part, title):
                 if isinstance(part, NavigableString):
                     title += str(part)
                 elif isinstance(part, Tag):
                     if part.name == "small":
                         note_string = part.string.strip(" ()")
-                        notes.update(
-                            map(lambda x: x.strip(), note_string.split(",")))
                     else:
                         if part.name == "br":
                             if title[-1] != " ":
                                 title += " "
                         for child in part.children:
-                            title, notes = extract(child, title, notes)
-                return title, notes
+                            title = extract(child, title)
+                return title
 
-            title, notes = extract(meal.find("div",{"class": "menu_name"}), "", set())
+            title = extract(
+                meal.find("div", {"class": "menu_name"}), "", set())
             title = re.sub("\s+", " ", title).strip()
             if len(title) < 1:
                 continue
-
-            # notes = map(lambda x: legend[x] if x in legend else x, notes)
 
             price = meal.find("div", {"class": "menu_preis"}).string.strip()
             prices = {}
