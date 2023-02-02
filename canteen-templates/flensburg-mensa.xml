@@ -10,7 +10,7 @@
     <feed name="full" priority="1">
       <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/flensburg-mensa.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/flensburg/mensa-flensburg/speiseplan.html</source>
+      <source>https://studentenwerk.sh/de/mensen-in-flensburg</source>
     </feed>
   </canteen>
 </openmensa>

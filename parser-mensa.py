@@ -20,7 +20,7 @@ mensas = {
     "kiel": {
         "mensa-i": 1,
         "mensa-ii": 2,
-        "kesselhause": 4,
+        "kesselhaus": 4,
         "schwentine": 5,
         "gaarden": 3,
         # "cafeteria-i": 413,

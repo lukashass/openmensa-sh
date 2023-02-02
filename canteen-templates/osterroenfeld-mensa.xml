@@ -8,7 +8,7 @@
     <feed name="full" priority="1">
       <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/osterroenfeld-mensa.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/osterroenfeld/mensa-osterroenfeld/speiseplan.html</source>
+      <source>https://studentenwerk.sh/de/mensen-osterroenfeld</source>
     </feed>
   </canteen>
 </openmensa>

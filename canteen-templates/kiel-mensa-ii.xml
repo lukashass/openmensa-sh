@@ -11,7 +11,7 @@
     <feed name="full" priority="1">
       <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/kiel-mensa-ii.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/kiel/mensa-ii/speiseplan.html</source>
+      <source>https://studentenwerk.sh/de/mensen-in-kiel</source>
     </feed>
   </canteen>
 </openmensa>

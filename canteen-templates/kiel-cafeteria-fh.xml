@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openmensa version="2.1" xmlns="http://openmensa.org/open-mensa-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openmensa.org/open-mensa-v2 http://openmensa.org/open-mensa-v2.xsd">
   <canteen>
-    <name>Schwentine Mensa</name>
-    <address>Grenzstraße 14, 24149 Kiel</address>
+    <name>Cafeteria &amp; American Diner</name>
+    <address>Sokratesplatz 6, 24149 Kiel</address>
     <city>Kiel</city>
-    <phone>+49 431 2104855</phone>
-    <email>schwentinemensa@studentenwerk.sh</email>
-    <location latitude="54.3297996" longitude="10.1811393" />
-    <availability>public</availability>
+    <phone>+49 431 2104864</phone>
+    <email>cafeteria.schwentine@studentenwerk.sh</email>
+    <location latitude="54.3325997" longitude="10.1809320" />
     <feed name="full" priority="1">
       <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
-      <url>https://[HOST_PLACEHOLDER]/feeds/kiel-schwentine-mensa.xml</url>
+      <url>https://[HOST_PLACEHOLDER]/feeds/kiel-cafeteria-fh.xml</url>
       <source>https://studentenwerk.sh/de/mensen-in-kiel</source>
     </feed>
   </canteen>

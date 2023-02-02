@@ -10,7 +10,7 @@
     <feed name="full" priority="1">
       <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
       <url>https://[HOST_PLACEHOLDER]/feeds/luebeck-musikhochschule.xml</url>
-      <source>https://www.studentenwerk.sh/de/essen/standorte/luebeck/musikhochschule/speiseplan.html</source>
+      <source>https://studentenwerk.sh/de/mensen-in-luebeck</source>
     </feed>
   </canteen>
 </openmensa>

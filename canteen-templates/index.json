@@ -2,8 +2,12 @@
   "kiel-mensa-i": "https://[HOST_PLACEHOLDER]/canteens/kiel-mensa-i.xml",
   "kiel-mensa-ii": "https://[HOST_PLACEHOLDER]/canteens/kiel-mensa-ii.xml",
   "kiel-schwentine-mensa": "https://[HOST_PLACEHOLDER]/canteens/kiel-schwentine-mensa.xml",
+  "kiel-cafeteria-fh": "https://[HOST_PLACEHOLDER]/canteens/kiel-cafeteria-fh.xml",
+  "kiel-kiel-gaarden": "https://[HOST_PLACEHOLDER]/canteens/kiel-gaarden.xml",
+  "kiel-kiel-kesselhaus": "https://[HOST_PLACEHOLDER]/canteens/kiel-kesselhaus.xml",
   "luebeck-mensa": "https://[HOST_PLACEHOLDER]/canteens/luebeck-mensa.xml",
   "luebeck-musikhochschule": "https://[HOST_PLACEHOLDER]/canteens/luebeck-musikhochschule.xml",
   "heide-mensa": "https://[HOST_PLACEHOLDER]/canteens/heide-mensa.xml",
-  "flensburg-mensa": "https://[HOST_PLACEHOLDER]/canteens/flensburg-mensa.xml"
+  "flensburg-mensa": "https://[HOST_PLACEHOLDER]/canteens/flensburg-mensa.xml",
+  "wedel-cafeteria": "https://[HOST_PLACEHOLDER]/canteens/wedel-cafeteria.xml"
 }

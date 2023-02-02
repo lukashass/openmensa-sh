@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openmensa version="2.1" xmlns="http://openmensa.org/open-mensa-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openmensa.org/open-mensa-v2 http://openmensa.org/open-mensa-v2.xsd">
   <canteen>
-    <name>Mensa Heide</name>
-    <address>Fritz-Thiedemann-Ring 20a, 25746 Heide</address>
-    <city>Heide</city>
-    <phone>+49 481 8555190</phone>
-    <email>mensa.hei@studentenwerk.sh</email>
-    <location latitude="54.19424" longitude="9.12195" />
+    <name>Cafeteria Wedel</name>
+    <address>Feldstraße 143, 22880 Wedel</address>
+    <city>Wedel</city>
+    <phone>+49 4103 1879215</phone>
+    <email>cafeteria.wedel@studentenwerk.sh</email>
+    <location latitude="53.5780730" longitude="9.7283334" />
     <feed name="full" priority="1">
       <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
-      <url>https://[HOST_PLACEHOLDER]/feeds/heide-mensa.xml</url>
-      <source>https://studentenwerk.sh/de/mensen-in-heide</source>
+      <url>https://[HOST_PLACEHOLDER]/feeds/wedel-cafeteria.xml</url>
+      <source>https://studentenwerk.sh/de/cafeteria-wedel</source>
     </feed>
   </canteen>
 </openmensa>
