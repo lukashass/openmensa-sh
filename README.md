@@ -6,7 +6,7 @@ Schleswig-Holstein and parses them to the OpenMensa format.
 ## Usage
 
 ```sh
-./parser.py <town> [mensa] [days]
+./parser-mensa.py <town> [mensa] [days]
 ```
 
 ## Deployment
