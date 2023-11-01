@@ -84,7 +84,7 @@ for next_week in range(0, 2):
             notes = list(map(lambda x: legend[x], notes))
 
             category = meal.find(
-                "div", {"class": "menu_art"}).contents[0].string.strip()
+                "div", {"class": "menu_art"}).contents[0].select_one("span[class^=mensatyp_]").string.strip()
 
             title = ""
 
