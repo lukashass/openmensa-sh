@@ -104,7 +104,7 @@ for next_week in range(0, 2):
 
             title = extract(
                 meal.find("div", {"class": "menu_name"}), "")
-            title = re.sub("\s+", " ", title).strip()
+            title = re.sub("\\s+", " ", title).strip()
             if len(title) < 1:
                 continue
 
