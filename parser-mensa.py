@@ -81,7 +81,7 @@ for next_week in range(0, 2):
             notes.extend(meal['data-arten'].split('|'))
             notes.extend(meal['data-allergene'].split('|'))
             notes.extend(meal['data-zusatzstoffe'].split('|'))
-            notes = list(filter(lambda x: len(x) > 0, notes))
+            notes = list(filter(lambda x: len(x) > 0 and x in legend, notes))
             notes = list(map(lambda x: legend[x], notes))
 
             category = meal.find(
