@@ -71,6 +71,9 @@ for next_week in range(0, 2):
 
     days = document.find_all("div", {"class": "tag_headline"})
 
+    # weekend days are sometimes present but not visible
+    days = list(filter(lambda x: "tab_nicht_sichtbar" not in x.attrs['class'], days))
+
     for day in days:
         date = datetime.datetime.strptime(day.attrs['data-day'], '%Y-%m-%d')
 
