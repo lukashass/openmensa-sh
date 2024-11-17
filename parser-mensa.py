@@ -87,8 +87,11 @@ for next_week in range(0, 2):
             notes = list(filter(lambda x: len(x) > 0 and x in legend, notes))
             notes = list(map(lambda x: legend[x], notes))
 
-            category = meal.find(
-                "div", {"class": "menu_art"}).contents[0].select_one("span[class^=mensatyp_]").string.strip()
+            category_div = meal.find("div", {"class": "menu_art"})
+            if category_div and category_div.contents:
+                category = category_div.contents[0].select_one("span[class^=mensatyp_]").string.strip()
+            else:
+                category = "Mensa"
 
             title = ""
 
@@ -112,7 +115,7 @@ for next_week in range(0, 2):
             if len(title) < 1:
                 continue
 
-            price = meal.find("div", {"class": "menu_preis"}).string.strip()
+            price = meal.find("div", {"class": "menu_preis"}).text.strip()
             prices = {}
             if price:
                 subprice = price.split("/")
