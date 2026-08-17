@@ -5,7 +5,7 @@
     <address>Kaiserstraße 2, 24143 Kiel</address>
     <city>Kiel</city>
     <phone>+49 431 8816581</phone>
-    <email>nicole.stangenberg@studentenwerk.sh</email>
+    <email>dockside@studentenwerk.sh</email>
     <location latitude="54.3153392" longitude="10.1529373" />
     <feed name="full" priority="1">
       <schedule dayOfMonth="*" dayOfWeek="*" hour="*" />
