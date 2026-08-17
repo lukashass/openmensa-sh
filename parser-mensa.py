@@ -27,6 +27,7 @@ mensas = {
         # "cafeteria-ii": 423,
         "cafeteria-fh": 6,
         "cafeteria-dockside": 16,
+        "boje23": 18,
     },
     "luebeck": {
         "mensa": 8,
