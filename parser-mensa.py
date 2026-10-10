@@ -50,25 +50,19 @@ if mensa not in mensas[town]:
 
 mensa_id = mensas[sys.argv[1]][mensa]
 
-legend = {}
-legendcontent = urlopen(
-    'https://studentenwerk.sh/de/essen-uebersicht?ort=1&mensa=1').read()
-legenddocument = parse(legendcontent, 'html.parser')
-legends = legenddocument.find_all("div", {"class": "filterbutton"})
-
-for current_legend in legends:
-    legend[current_legend['data-wert']
-           ] = current_legend.select_one('span:not(.abk)').string.strip()
-
 canteen = LazyBuilder()
 
 # parse current and next week
 for next_week in range(0, 2):
-    url = "https://studentenwerk.sh/de/mensaplandruck?mensa={}&nw={}".format(
+    url = "https://studentenwerk.sh/de/essen-uebersicht?mensa={}&nw={}".format(
         mensa_id, next_week)
 
     content = urlopen(url).read()
     document = parse(content, "html.parser")
+
+    legend = {}
+    for btn in document.find_all("div", {"class": "filterbutton"}):
+        legend[btn['data-wert']] = btn.select_one('span:not(.abk)').string.strip()
 
     days = document.find_all("div", {"class": "tag_headline"})
 
